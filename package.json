@@ -1,0 +1,23 @@
+{
+  "name": "my-first-api",
+  "version": "1.0.0",
+  "description": "api with node.js and mongo",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/blasapo1980/APIwithNode.git"
+  },
+  "author": "blanca sancho",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/blasapo1980/APIwithNode/issues"
+  },
+  "homepage": "https://github.com/blasapo1980/APIwithNode#readme",
+  "dependencies": {
+    "express": "^4.15.4",
+    "mongoose": "^4.11.8"
+  }
+}
