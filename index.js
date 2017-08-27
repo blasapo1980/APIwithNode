@@ -46,6 +46,7 @@ app.get('/api/notes/fav', (req,res) => {
   for (var i = 0; i<notes_collection.length; i++) {
     if(notes_collection[i].fav === true){
       notes_favorites.push(notes_collection[i]);
+      //notes_favorites += notes_collection[i];
     }
   }
   res.status(200).send(notes_favorites);
