@@ -41,9 +41,9 @@ app.put('/api/notes/fav/:noteId', (req,res) => {
 });
 
 //GET: consultar todas las favoritas
-/*esto funciona, siempre y cuando el let = notes_collection se tome como un array,
+/*esto funciona, siempre y cuando el let = notes_collection (linea 11) se tome como un array,
 pero al hacer eso, las Id que voy asignadondo a cada frase creada, se rompe
-una posible solución para probar mañana: el Id, ponerlas con las posiciones*/
+Una posible solución para probar mañana: el Id, ponerlas con las posiciones*/
 app.get('/api/favorites', (req,res) => {
   let notes_favorites = [];
   notes_collection.forEach(function(element) {
