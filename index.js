@@ -36,21 +36,34 @@ app.post('/api/notes', (req, res) => {
 //PUT. modificar una nota: marcar una nota como favorita
 app.put('/api/notes/fav/:noteId', (req,res) => {
   let noteId = req.params.noteId;
-  notes_collection[noteId].fav === true;
+  notes_collection[noteId].fav = true;
   res.status(200).send({message: `La frase ${notes_collection[noteId].note} ha sido guardada como favorita`});
 });
 
 //GET: consultar todas las favoritas
+/*esto funciona, siempre y cuando el let = notes_collection se tome como un array,
+pero al hacer eso, las Id que voy asignadondo a cada frase creada, se rompe
+una posible solución para probar mañana: el Id, ponerlas con las posiciones*/
+app.get('/api/favorites', (req,res) => {
+  let notes_favorites = [];
+  notes_collection.forEach(function(element) {
+    if(element.fav === true){
+      notes_favorites.push(element);
+    }
+  });
+  res.status(200).send(notes_favorites);
+});
+
+/*y esto... debería funcionar pero no lo hace. no logro saber qué está mal
 app.get('/api/notes/fav', (req,res) => {
   let notes_favorites = [];
   for (var i = 0; i<notes_collection.length; i++) {
     if(notes_collection[i].fav === true){
       notes_favorites.push(notes_collection[i]);
-      //notes_favorites += notes_collection[i];
     }
   }
   res.status(200).send(notes_favorites);
-});
+});*/
 
 app.listen(3000, () => {
   console.log('Servidor escuchando en puerto 3000');
