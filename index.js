@@ -9,11 +9,9 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
 let notes_collection = {};
-
 //GET: Para que devuelva todas las frases
 app.get('/api/notes', (req, res) => {
-  let all_notes = notes_collection;
-  res.status(200).send({notes: all_notes});
+  res.status(200).send({notes: notes_collection});
 });
 
 //para que devuelva una frase (según el ID)
@@ -34,16 +32,14 @@ app.post('/api/notes', (req, res) => {
 });
 
 //PUT. modificar una nota: marcar una nota como favorita
-app.put('/api/notes/fav/:noteId', (req,res) => {
+app.put('/api/notes/:noteId', (req,res) => {
   let noteId = req.params.noteId;
   notes_collection[noteId].fav = true;
   res.status(200).send({message: `La frase ${notes_collection[noteId].note} ha sido guardada como favorita`});
 });
 
-//GET: consultar todas las favoritas
-/*esto funciona, siempre y cuando el let = notes_collection (linea 11) se tome como un array,
-pero al hacer eso, las Id que voy asignadondo a cada frase creada, se rompe
-Una posible solución para probar mañana: el Id, ponerlas con las posiciones*/
+//GET: consultar todas las favoritas (tomando array en la 11)
+
 app.get('/api/favorites', (req,res) => {
   let notes_favorites = [];
   notes_collection.forEach(function(element) {
@@ -54,8 +50,8 @@ app.get('/api/favorites', (req,res) => {
   res.status(200).send(notes_favorites);
 });
 
-/*y esto... debería funcionar pero no lo hace. no logro saber qué está mal
-app.get('/api/notes/fav', (req,res) => {
+/*
+app.get('/api/notes/favrites', (req,res) => {
   let notes_favorites = [];
   for (var i = 0; i<notes_collection.length; i++) {
     if(notes_collection[i].fav === true){
