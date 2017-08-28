@@ -38,28 +38,17 @@ app.put('/api/notes/:noteId', (req,res) => {
   res.status(200).send({message: `La frase ${notes_collection[noteId].note} ha sido guardada como favorita`});
 });
 
-//GET: consultar todas las favoritas (tomando array en la 11)
+//GET: consultar todas las favoritas
 
 app.get('/api/favorites', (req,res) => {
   let notes_favorites = [];
-  notes_collection.forEach(function(element) {
-    if(element.fav === true){
-      notes_favorites.push(element);
-    }
-  });
-  res.status(200).send(notes_favorites);
-});
-
-/*
-app.get('/api/notes/favrites', (req,res) => {
-  let notes_favorites = [];
-  for (var i = 0; i<notes_collection.length; i++) {
-    if(notes_collection[i].fav === true){
-      notes_favorites.push(notes_collection[i]);
+  for (var key in notes_collection) {
+    if(notes_collection[key].fav === true){
+      notes_favorites.push(notes_collection[key]);
     }
   }
   res.status(200).send(notes_favorites);
-});*/
+});
 
 app.listen(3000, () => {
   console.log('Servidor escuchando en puerto 3000');
